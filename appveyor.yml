@@ -1,0 +1,18 @@
+version: 1.0.{build}
+os: Visual Studio 2022
+
+branches:
+  only:
+  - master
+
+skip_tags: true
+
+install:
+- cmd: dotnet restore src\NReco.LambdaParser.sln
+
+build_script:
+- cmd: dotnet build src\NReco.LambdaParser --configuration Release
+- cmd: dotnet build src\NReco.LambdaParser.Tests --configuration Release
+
+test_script:
+- cmd: dotnet test src\NReco.LambdaParser.Tests\NReco.LambdaParser.Tests.csproj --configuration Release
